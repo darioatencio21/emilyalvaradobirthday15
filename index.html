@@ -147,9 +147,9 @@
 
   /* Hero portrait: marco de foto de Emily */
   .hero-frame-wrap{position:relative;width:clamp(360px,98vw,480px);aspect-ratio:1024/1536;
-    margin:clamp(90px,13vw,120px) auto 18px;transform:translateX(-16px);}
+    margin:clamp(90px,13vw,120px) auto 18px;transform:translateX(-16px);padding:5%;box-sizing:border-box;}
   .hero-portrait{position:relative;z-index:2;display:block;width:100%;height:100%;object-fit:contain;
-    filter:drop-shadow(0 14px 30px rgba(0,0,0,.35));}
+    object-position:center center;filter:drop-shadow(0 14px 30px rgba(0,0,0,.35));}
   #welcome .name{font-size:clamp(2rem,7vw,3.4rem);color:var(--ivory);margin-top:.2rem;
     text-shadow:0 0 24px rgba(201,169,97,.25);}
   #welcome .subtitle{color:var(--gold-soft);margin-top:.3rem;}
