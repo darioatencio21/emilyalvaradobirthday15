@@ -1,16 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Emily's Quinceañera</title>
-  <meta name="description" content="CelebraciÃ³n de los XV años de Emily â€” sÃ¡bado 14 de noviembre de 2026. Misa, recepciÃ³n y vals. Confirma tu asistencia aquÃ­.">
+  <meta name="description" content="Celebración de los XV años de Emily — sábado 14 de noviembre de 2026. Misa, recepción y vals. Confirma tu asistencia aquí.">
   <meta name="theme-color" content="#234323">
   <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=1NZ_TG2Uwj9vNZqYPN-ZtxKFelgDHmlI-&sz=w64">
   <!-- Open Graph / redes sociales (WhatsApp, Messenger, Facebook, IG) -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Emily's Quinceañera â€” Nov 14, 2026">
-  <meta property="og:description" content="Te invitamos a celebrar los XV años de Emily. Misa, recepciÃ³n y vals â€” Terra Bella, CA. Â¡Confirma tu asistencia!">
+  <meta property="og:title" content="Emily's Quinceañera — Nov 14, 2026">
+  <meta property="og:description" content="Te invitamos a celebrar los XV años de Emily. Misa, recepción y vals — Terra Bella, CA. ¡Confirma tu asistencia!">
   <meta property="og:image" content="https://drive.google.com/thumbnail?id=1z5jw6ra1A1Oldk8H-YWtdgaVwxoheRPc&sz=w1200">
   <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -151,7 +151,7 @@
   .light{background:var(--ivory);color:var(--ink);}
 
   /* Custom background images (fondos) provided by the client.
-     - "fondo de la secciÃ³n completa de info y rsvp" -> shared .section--textured
+     - "fondo de la sección completa de info y rsvp" -> shared .section--textured
        (details, gallery, rsvp all belong to the same visual family).
      - "fondo para apartado donde esta la carta" -> welcome (carta). */
    .section--textured{background:var(--forest-deep) url("assets/fondo-rosa-otras-secciones.jpg") center/cover no-repeat;color:var(--ink);}
@@ -204,7 +204,7 @@
 
   /* Hero portrait with decorative frame (flota sobre el fondo: sin panel ni recuadro) */
   .hero-frame-wrap{position:relative;width:clamp(360px,98vw,480px);aspect-ratio:1536/1024;
-    margin:clamp(90px,13vw,120px) auto 18px;overflow:hidden;border-radius:14px;transform:translateX(-16px);}
+    margin:clamp(60px,8vw,90px) auto 18px;overflow:hidden;border-radius:14px;transform:translateX(-16px);}
   .hero-photo{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;}
   .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;}
   .hero-photo .placeholder-icon{width:30%;height:30%;opacity:.4;stroke:var(--gold-soft);}
@@ -390,7 +390,7 @@
   /* Hero rings */
   @keyframes spinSlow{to{transform:rotate(360deg);}}
 
-  /* Respiro de brillo sobre el nÃºmero del contador (convive con el "tick" de cambio) */
+  /* Respiro de brillo sobre el número del contador (convive con el "tick" de cambio) */
   .count-num{animation:countBreath 3s ease-in-out infinite;}
   @keyframes countBreath{0%,100%{text-shadow:0 0 6px rgba(201,169,97,.25);}50%{text-shadow:0 0 18px rgba(201,169,97,.6);}}
   /* Iconos de fecha/hora/lugar se mecen suavemente */
@@ -460,7 +460,7 @@
      radial-gradient(circle at 50% 0%, rgba(201,169,97,.08), transparent 45%),
      linear-gradient(180deg,var(--forest),var(--forest-deep));}
   /* =====================================================================
-     Photo Block â€” reusable component (cronograma, galerÃ­a, detalles, etc.)
+     Photo Block — reusable component (cronograma, galería, detalles, etc.)
      IMPORTANT: the media <img> MUST be a PNG with a TRANSPARENT background
      so the subject "floats" over the emerald section. Never use JPG or an
      image with a white/colored backing rectangle.
@@ -471,7 +471,7 @@
            .photo-block__time  "4:00 PM"  (large bold)
            .photo-block__title (uppercase)
            .photo-block__subtitle (venue)
-           a.photo-block__link "VER UBICACIÃ“N"
+           a.photo-block__link "VER UBICACIÓN"
      Layout: always TWO columns (image left, text right) at every width.
      The image lives in a fixed-height square that scales with clamp():
        90px (mobile) â†’ ~130px (tablet) â†’ 180px+ (desktop), and the <img>
@@ -523,12 +523,12 @@
     .photo-block__link{font-size:.62rem;}
   }
 
-  /* ============ PARTÃCULAS: luciÃ©rnagas + estrellas (tarjeta de bienvenida) ============
+  /* ============ PARTÍCULAS: luciérnagas + estrellas (tarjeta de bienvenida) ============
      Generadas por JS con posiciones/dur. aleatorias. Solo transform/opacity (sin reflow).
      Capas en la tarjeta: fondo -> silueta -> particulas (z-index:1) -> texto (z-index:2). */
   .welcome-particles{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none;}
-  /* Overlay fijo: luciÃ©rnagas y estrellas que acompañan toda la pÃ¡gina (todas las secciones),
-     siempre por debajo del sobre de entrada, la mÃºsica y los modales, y sin bloquear clics. */
+  /* Overlay fijo: luciérnagas y estrellas que acompañan toda la página (todas las secciones),
+     siempre por debajo del sobre de entrada, la música y los modales, y sin bloquear clics. */
   .global-particles{position:fixed;inset:0;z-index:55;overflow:hidden;pointer-events:none;}
   .welcome-particles .firefly,.global-particles .firefly{position:absolute;border-radius:50%;
     background:radial-gradient(circle at 35% 30%, #fdf6e3, var(--gold-soft) 45%, var(--gold) 100%);
@@ -560,7 +560,7 @@
   }
 
   /* ============ "Date, Time & Place": imagen quinceañera + halo + bokeh ============
-     Halo radial dorado detrÃ¡s de la imagen (z-index:0), imagen con fade en su base,
+     Halo radial dorado detrás de la imagen (z-index:0), imagen con fade en su base,
      bokeh alrededor (z-index:1, denso cerca de la figura). Todo pointer-events:none. */
   .quince-scene{position:relative;width:min(360px,88vw);height:clamp(280px,46vw,380px);margin:0 auto clamp(14px,3vw,22px);}
   .quince-halo{position:absolute;top:50%;left:50%;width:135%;height:135%;transform:translate(-50%,-50%);
@@ -693,7 +693,7 @@
 
     <div class="lang-toggle" role="group" aria-label="Language">
       <button type="button" class="lang-btn active" id="lang-en" data-lang="en">ENGLISH</button>
-      <button type="button" class="lang-btn" id="lang-es" data-lang="es">ESPAñOL</button>
+      <button type="button" class="lang-btn" id="lang-es" data-lang="es">ESPAÑOL</button>
     </div>
 
     <div class="open-hint" data-i18n="open_hint">Tap the envelope to open your invitation</div>
@@ -723,7 +723,7 @@
       <div class="eyebrow subtitle" data-i18n="turning_fifteen">Turning Fifteen</div>
       <h2 class="name script" id="welcome-name">Emily Alvarado</h2>
       <div class="divider"><svg viewBox="0 0 100 40" class="branch-gold"><use href="#leaf-branch"/></svg><span class="dot"></span><svg viewBox="0 0 100 40" class="branch-gold branch-flip"><use href="#leaf-branch"/></svg></div>
-      <p class="msg" data-i18n="welcome_msg">With love and excitement, my family and I invite you to join us as I celebrate this milestone â€” an evening of dancing, laughter, and cherished traditions with the people who mean the most to me.</p>
+      <p class="msg" data-i18n="welcome_msg">With love and excitement, my family and I invite you to join us as I celebrate this milestone — an evening of dancing, laughter, and cherished traditions with the people who mean the most to me.</p>
       <div class="scroll-cue"></div>
       </div>
     </div>
@@ -783,7 +783,7 @@
         </div>
         <div class="detail-row">
           <svg><use href="#ico-pin"/></svg>
-          <div><div class="label" data-i18n="label_venue">Venue</div><div class="value" id="detail-venue">Blessed Miguel Agustin Pro Mission<br><span style="font-size:1rem;color:var(--moss)">23941 Ave 95, Terra Bella, CA 93270</span></div></div>
+          <div><div class="label" data-i18n="label_venue">Venue</div><div class="value" id="detail-venue">Blessed Miguel Agustín Pro Mission<br><span style="font-size:1rem;color:var(--moss)">23941 Ave 95, Terra Bella, CA 93270</span></div></div>
         </div>
         <a class="map-btn shine" id="map-link" href="#" target="_blank" rel="noopener" data-i18n="get_directions">Get Directions</a>
       </div>
@@ -804,8 +804,8 @@
           <div class="photo-block__body">
             <p class="photo-block__time">2:00 PM</p>
             <p class="photo-block__title" data-i18n="tl_title_1">Thanksgiving Mass</p>
-            <p class="photo-block__subtitle">Blessed Miguel Agustin Pro Mission</p>
-            <a class="photo-block__link" href="https://www.google.com/maps/search/?api=1&amp;query=Blessed%20Miguel%20Agustin%20Pro%20Mission%2023941%20Ave%2095%2C%20Terra%20Bella%2C%20CA%2093270" target="_blank" rel="noopener" data-i18n="view_location">View Location</a>
+            <p class="photo-block__subtitle">Blessed Miguel Agustín Pro Mission</p>
+            <a class="photo-block__link" href="https://www.google.com/maps/search/?api=1&amp;query=Blessed%20Miguel%20Agust%C3%ADn%20Pro%20Mission%2023941%20Ave%2095%2C%20Terra%20Bella%2C%20CA%2093270" target="_blank" rel="noopener" data-i18n="view_location">View Location</a>
           </div>
         </div>
         <div class="photo-block">
@@ -816,7 +816,7 @@
             <p class="photo-block__time">5:00 PM</p>
             <p class="photo-block__title" data-i18n="tl_title_2">Reception</p>
             <p class="photo-block__subtitle">Terra Bella, CA</p>
-            <!-- TODO: reemplazar por la direcciÃ³n real del salÃ³n de fiesta -->
+            <!-- TODO: reemplazar por la dirección real del salón de fiesta -->
             <a class="photo-block__link" href="https://www.google.com/maps/search/?api=1&amp;query=Terra%20Bella%2C%20CA" target="_blank" rel="noopener" data-i18n="view_location">View Location</a>
           </div>
         </div>
@@ -866,7 +866,7 @@
         <div class="swatch"><div class="chip" style="background:#faf6ec;border:1px solid #ddd"></div><div class="name" data-i18n="swatch_ivory">Ivory</div></div>
         <div class="swatch"><div class="chip" style="background:#8aa88f"></div><div class="name" data-i18n="swatch_sage">Sage</div></div>
       </div>
-      <p class="dress-note" data-i18n="dress_note">Emerald, gold and soft neutral tones are welcome. Kindly avoid wearing white â€” that shade is reserved for the birthday girl.</p>
+      <p class="dress-note" data-i18n="dress_note">Emerald, gold and soft neutral tones are welcome. Kindly avoid wearing white — that shade is reserved for the birthday girl.</p>
     </div>
   </section>
 
@@ -920,7 +920,7 @@
   <footer>
     <div class="foot-monogram"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#monogram-ring"/></svg><span>I</span></div>
     <div class="sign script" id="footer-sign" data-i18n="footer_sign">With Love, Emily &amp; Family</div>
-    <p data-i18n="footer_note">Can't wait to celebrate with you ðŸ’š</p>
+    <p data-i18n="footer_note">Can't wait to celebrate with you 💚</p>
   </footer>
 </div>
 
@@ -951,7 +951,7 @@
   "use strict";
 
   /* ============================================================
-     CONFIG â€” edit these before sharing the link with guests.
+     CONFIG — edit these before sharing the link with guests.
      - galleryPhotos: paste real image URLs into the quotes.
        Leave "" to keep the decorative placeholder frame.
        Add or remove array entries freely (15 included by default).
@@ -966,29 +966,29 @@
     eventDateISO: "2026-11-14T14:00:00-08:00",
     dateDisplay: "Saturday, November 14, 2026",
     timeDisplay: "2:00 PM",
-    venueName: "Blessed Miguel Agustin Pro Mission",
+    venueName: "Blessed Miguel Agustín Pro Mission",
     venueAddress: "23941 Ave 95, Terra Bella, CA 93270",
     hostPassword: "isa15",
     // Paste your Formspree endpoint here (e.g. "https://formspree.io/f/abcd1234")
     // ONLY needed if this page is hosted outside Claude (e.g. GitHub Pages).
-    // Get a free one at https://formspree.io â€” takes about 2 minutes.
+    // Get a free one at https://formspree.io — takes about 2 minutes.
     formspreeEndpoint: "",
     musicUrl: "https://files.catbox.moe/ijmlns.mp3",
     heroPhoto: "",
     galleryPhotos: ["","","","","","","","","","","","","","",""]
   };
 
-  const translations = {
+const translations = {
     en: {
       page_title: "{name}'s Quinceañera",
       eyebrow_invited: "You Are Invited",
       invite_title: "Emily's Quinceañera",
       open_hint: "Tap the envelope to open your invitation",
       turning_fifteen: "Turning Fifteen",
-      welcome_msg: "With love and excitement, my family and I invite you to join us as I celebrate this milestone â€” an evening of dancing, laughter, and cherished traditions with the people who mean the most to me.",
+      welcome_msg: "With love and excitement, my family and I invite you to join us as I celebrate this milestone — an evening of dancing, laughter, and cherished traditions with the people who mean the most to me.",
       countdown_eyebrow: "Counting Down To The Celebration",
       label_days: "Days", label_hours: "Hours", label_mins: "Minutes", label_secs: "Seconds",
-      celebration_begun: "The celebration has begun! ðŸŽ‰",
+      celebration_begun: "The celebration has begun! 🎉",
       details_eyebrow: "The Details",
       details_heading: "Date, Time &amp; Place",
       label_date: "Date", label_time: "Time", label_venue: "Venue",
@@ -1006,7 +1006,7 @@
       dresscode_heading: "Dress Code",
       dresscode_sub: "Garden Formal",
       swatch_emerald: "Emerald", swatch_gold: "Gold", swatch_ivory: "Ivory", swatch_sage: "Sage",
-      dress_note: "Emerald, gold and soft neutral tones are welcome. Kindly avoid wearing white â€” that shade is reserved for the birthday girl.",
+      dress_note: "Emerald, gold and soft neutral tones are welcome. Kindly avoid wearing white — that shade is reserved for the birthday girl.",
       rsvp_eyebrow: "Will You Join Us?",
       rsvp_deadline: "Kindly respond by October 1, 2026",
       label_name: "Your Name",
@@ -1020,9 +1020,9 @@
       submit_btn: "Send RSVP",
       confirmation_heading: "Thank You!",
       confirmation_yes: "We can't wait to celebrate with you!",
-      confirmation_no: "You'll be missed â€” thank you for letting us know.",
+      confirmation_no: "You'll be missed — thank you for letting us know.",
       footer_sign: "With Love, {name} &amp; Family",
-      footer_note: "Can't wait to celebrate with you ðŸ’š",
+      footer_note: "Can't wait to celebrate with you 💚",
       host_link: "Host View",
       host_modal_heading: "Guest Responses",
       host_gate_text: "Enter the host password to view RSVPs.",
@@ -1044,66 +1044,66 @@
     },
     es: {
       page_title: "Quinceañera de {name}",
-      eyebrow_invited: "EstÃ¡s Invitada",
+      eyebrow_invited: "Estás Invitada",
       invite_title: "Quinceañera de Emily",
-      open_hint: "Toca el sobre para abrir tu invitaciÃ³n",
+      open_hint: "Toca el sobre para abrir tu invitación",
       turning_fifteen: "Cumpliendo Quince",
-      welcome_msg: "Con mucho cariño, mi familia y yo te invitamos a celebrar este momento tan especial â€” una noche de baile, risas y tradiciones junto a las personas que mÃ¡s quiero.",
-      countdown_eyebrow: "Cuenta Regresiva Para La CelebraciÃ³n",
-      label_days: "DÃ­as", label_hours: "Horas", label_mins: "Minutos", label_secs: "Segundos",
-      celebration_begun: "Â¡La celebraciÃ³n ha comenzado! ðŸŽ‰",
+      welcome_msg: "Con mucho cariño, mi familia y yo te invitamos a celebrar este momento tan especial — una noche de baile, risas y tradiciones junto a las personas que más quiero.",
+      countdown_eyebrow: "Cuenta Regresiva Para La Celebración",
+      label_days: "Días", label_hours: "Horas", label_mins: "Minutos", label_secs: "Segundos",
+      celebration_begun: "¡La celebración ha comenzado! 🎉",
       details_eyebrow: "Los Detalles",
       details_heading: "Fecha, Hora y Lugar",
       label_date: "Fecha", label_time: "Hora", label_venue: "Lugar",
-      get_directions: "CÃ³mo Llegar",
+      get_directions: "Cómo Llegar",
       timeline_eyebrow: "El Programa",
-      timeline_heading: "CronologÃ­a del Evento",
-      tl_title_1: "Misa de acciÃ³n de gracias",
-      tl_title_2: "RecepciÃ³n",
+      timeline_heading: "Cronología del Evento",
+      tl_title_1: "Misa de acción de gracias",
+      tl_title_2: "Recepción",
       tl_title_3: "Vals",
-      tl_title_4: "CelebraciÃ³n",
-      view_location: "Ver UbicaciÃ³n",
+      tl_title_4: "Celebración",
+      view_location: "Ver Ubicación",
       gallery_eyebrow: "Algunos Momentos Favoritos",
-      gallery_heading: "GalerÃ­a",
-      dresscode_eyebrow: "QuÃ© Usar",
-      dresscode_heading: "CÃ³digo de Vestimenta",
-      dresscode_sub: "Formal de JardÃ­n",
+      gallery_heading: "Galería",
+      dresscode_eyebrow: "Qué Usar",
+      dresscode_heading: "Código de Vestimenta",
+      dresscode_sub: "Formal de Jardín",
       swatch_emerald: "Esmeralda", swatch_gold: "Dorado", swatch_ivory: "Marfil", swatch_sage: "Salvia",
-      dress_note: "Los tonos esmeralda, dorado y neutros suaves son bienvenidos. Por favor evitar el blanco â€” ese color estÃ¡ reservado para la quinceañera.",
-      rsvp_eyebrow: "Â¿Nos Acompañas?",
+      dress_note: "Los tonos esmeralda, dorado y neutros suaves son bienvenidos. Por favor evita el blanco — ese color está reservado para la quinceañera.",
+      rsvp_eyebrow: "¿Nos Acompañas?",
       rsvp_deadline: "Por favor confirma antes del 1 de octubre de 2026",
       label_name: "Tu Nombre",
       placeholder_name: "Nombre completo",
-      label_attend: "Â¿AsistirÃ¡s?",
-      attend_yes: "Asiste con AlegrÃ­a",
+      label_attend: "¿Asistirás?",
+      attend_yes: "Asiste con Alegría",
       attend_no: "Declina con Pesar",
-      label_guests: "Total de personas que asisten (incluyÃ©ndote)",
+      label_guests: "Total de personas que asisten (incluyéndote)",
       label_message: "Mensaje (opcional)",
       placeholder_message: "Deja un mensaje para {name}...",
       submit_btn: "Enviar RSVP",
-      confirmation_heading: "Â¡Gracias!",
-      confirmation_yes: "Â¡No vemos la hora de celebrar contigo!",
-      confirmation_no: "Te vamos a extrañar â€” gracias por avisarnos.",
+      confirmation_heading: "¡Gracias!",
+      confirmation_yes: "¡No vemos la hora de celebrar contigo!",
+      confirmation_no: "Te vamos a extrañar — gracias por avisarnos.",
       footer_sign: "Con Cariño, {name} y Familia",
-      footer_note: "No vemos la hora de celebrar contigo ðŸ’š",
-      host_link: "Vista del AnfitriÃ³n",
+      footer_note: "No vemos la hora de celebrar contigo 💚",
+      host_link: "Vista del Anfitrión",
       host_modal_heading: "Respuestas de Invitados",
-      host_gate_text: "Ingresa la contraseña del anfitriÃ³n para ver las confirmaciones.",
+      host_gate_text: "Ingresa la contraseña del anfitrión para ver las confirmaciones.",
       host_pass_placeholder: "Contraseña",
       host_pass_btn: "Ver",
       host_pass_error: "Contraseña incorrecta.",
-      host_no_responses: "AÃºn no hay respuestas.",
+      host_no_responses: "Aún no hay respuestas.",
       host_loading: "Cargando respuestas...",
       host_error: "No se pudieron cargar las respuestas. Intenta de nuevo.",
       host_attending: "Asiste",
-      host_declined: "DeclinÃ³",
+      host_declined: "Declinó",
       host_parties_suffix: "grupos confirmados",
       host_guests_suffix: "invitados en total",
       form_error_name: "Por favor ingresa tu nombre.",
       form_sending: "Enviando...",
       form_error_generic: "Hubo un problema al enviar tu RSVP. Intenta de nuevo.",
-      play_music: "Reproducir mÃºsica",
-      pause_music: "Pausar mÃºsica"
+      play_music: "Reproducir música",
+      pause_music: "Pausar música"
     }
   };
 
@@ -1134,7 +1134,7 @@
     });
   });
 
-  /* Prefill del nombre del invitado desde el link: ?nombre=MarÃ­a (o ?name=) */
+  /* Prefill del nombre del invitado desde el link: ?nombre=María (o ?name=) */
   try{
     const params = new URLSearchParams(window.location.search);
     const guestName = params.get('nombre') || params.get('name');
@@ -1383,21 +1383,21 @@
   const confirmation = document.getElementById('confirmation');
   const confirmationText = document.getElementById('confirmation-text');
 
-  // Bloqueo anti-duplicados: evita que un mismo navegador envÃ­e el RSVP mÃ¡s de una vez
-  // (doble click, Enter repetido, recargas, o volver atrÃ¡s). rsvpSubmitting cubre el envÃ­o
-  // en curso; rsvpDone queda en localStorage para que no se repita aunque recargue la pÃ¡gina.
+  // Bloqueo anti-duplicados: evita que un mismo navegador envíe el RSVP más de una vez
+  // (doble click, Enter repetido, recargas, o volver atrás). rsvpSubmitting cubre el envío
+  // en curso; rsvpDone queda en localStorage para que no se repita aunque recargue la página.
   let rsvpSubmitting = false;
   let rsvpDone = false;
   try{ if(localStorage.getItem('rsvp-done')){ rsvpDone = true; } }catch(e){}
 
-  // SanitizaciÃ³n de texto: quita caracteres de control, colapsa espacios y limita longitud.
+  // Sanitización de texto: quita caracteres de control, colapsa espacios y limita longitud.
   function sanitizeText(str, maxLen){
     if(typeof str !== 'string') return '';
     return str.replace(/[\u0000-\u001F\u007F]/g,' ').replace(/\s+/g,' ').trim().slice(0, maxLen || 120);
   }
 
-  // Si este navegador ya confirmÃ³ antes, mostramos la confirmaciÃ³n en lugar del formulario
-  // (asÃ­ no hay forma de reenviar duplicados tras una recarga).
+  // Si este navegador ya confirmó antes, mostramos la confirmación en lugar del formulario
+  // (así no hay forma de reenviar duplicados tras una recarga).
   (function restoreRsvp(){
     if(!rsvpDone){ return; }
     try{
@@ -1415,7 +1415,7 @@
   //    and the "Host View" panel below shows live responses in-page.
   // 2) Hosted elsewhere (e.g. GitHub Pages): window.storage does not exist there,
   //    so RSVPs are sent to Formspree instead (set CONFIG.formspreeEndpoint above).
-  //    In that mode, check responses in your email or your Formspree dashboard â€”
+  //    In that mode, check responses in your email or your Formspree dashboard —
   //    the in-page Host View panel can't read them back for security reasons.
   const hasArtifactStorage = (typeof window.storage !== 'undefined' && window.storage !== null);
 
@@ -1446,7 +1446,7 @@
         if(!result){ throw new Error('save failed'); }
       } else {
         if(!CONFIG.formspreeEndpoint){
-          formMsg.textContent = 'RSVP saving isn\'t set up yet on this hosting â€” add a Formspree link in CONFIG.formspreeEndpoint.';
+          formMsg.textContent = 'RSVP saving isn\'t set up yet on this hosting — add a Formspree link in CONFIG.formspreeEndpoint.';
           formMsg.classList.add('error');
           rsvpSubmitting = false;
           submitBtn.disabled = false;
