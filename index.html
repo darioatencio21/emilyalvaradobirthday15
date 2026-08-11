@@ -145,33 +145,11 @@
   .bg-butterfly.b5{top:24%;width:17px;height:13px;opacity:.28;animation-duration:42s;animation-delay:-6s;}
   .bg-butterfly.b6{top:74%;width:24px;height:18px;animation-duration:33s;animation-delay:-16s;}
 
-  /* Hero portrait: marco de foto de Emily + iluminación natural.
-     Halo circular (nunca cuadrado) siempre activo; shimmer tipo títulos solo con .css-mask
-     (se activa por JS cuando mask-image funciona y NO corre desde file://). */
+  /* Hero portrait: marco de foto de Emily */
   .hero-frame-wrap{position:relative;width:clamp(360px,98vw,480px);aspect-ratio:1024/1536;
     margin:clamp(90px,13vw,120px) auto 18px;transform:translateX(-16px);}
-  .hero-halo{position:absolute;inset:-14% -20%;z-index:0;pointer-events:none;filter:blur(26px);
-    background:radial-gradient(circle at 50% 34%,rgba(248,217,140,.5),rgba(201,169,97,.18) 46%,transparent 72%);
-    animation:heroHalo 5s ease-in-out infinite;}
-  @keyframes heroHalo{
-    0%,100%{opacity:.5;transform:scale(1);}
-    50%{opacity:.85;transform:scale(1.05);}
-  }
-  .hero-shine{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;mix-blend-mode:screen;
-    background-image:
-      linear-gradient(110deg,transparent 28%,rgba(255,255,255,.85) 50%,transparent 72%),
-      linear-gradient(180deg,#fffdf5,var(--gold-soft) 60%,var(--gold));
-    background-size:260% 100%,100% 100%;background-position:-120% 0,0 0;
-    animation:goldShimmer 7s linear infinite;}
-  .css-mask .hero-shine{
-    opacity:1;
-    -webkit-mask-image:url('assets/marco-foto-emily.webp');mask-image:url('assets/marco-foto-emily.webp');
-    -webkit-mask-size:contain;mask-size:contain;
-    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-    -webkit-mask-position:center;mask-position:center;
-  }
   .hero-portrait{position:relative;z-index:2;display:block;width:100%;height:100%;object-fit:contain;
-    filter:drop-shadow(0 0 30px rgba(201,169,97,.45)) drop-shadow(0 14px 30px rgba(0,0,0,.38));}
+    filter:drop-shadow(0 14px 30px rgba(0,0,0,.35));}
   #welcome .name{font-size:clamp(2rem,7vw,3.4rem);color:var(--ivory);margin-top:.2rem;
     text-shadow:0 0 24px rgba(201,169,97,.25);}
   #welcome .subtitle{color:var(--gold-soft);margin-top:.3rem;}
@@ -754,8 +732,6 @@
       <div class="welcome-particles" aria-hidden="true"></div>
       <div class="welcome-content">
       <div class="hero-frame-wrap" id="hero-frame-wrap">
-        <span class="hero-halo" aria-hidden="true"></span>
-        <span class="hero-shine" aria-hidden="true"></span>
         <img class="hero-portrait" id="hero-frame" src="assets/marco-foto-emily.webp" alt="Emily Alvarado" draggable="false">
       </div>
 
@@ -1151,15 +1127,6 @@ es: {
 
   let currentLang = 'en';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* Activar shimmer enmascarado del hero solo cuando mask-image funciona y no se abre
-     desde file:// (ahí Chrome bloquea la imagen vía CSS por CORS: se evita el error y
-     se usa la luz ambiental base). */
-  (function enableCssMask(){
-    var ok = (typeof CSS !== 'undefined') && CSS.supports &&
-      (CSS.supports('mask-image', 'url(x.png)') || CSS.supports('-webkit-mask-image', 'url(x.png)'));
-    if(ok && window.location.protocol !== 'file:'){ document.documentElement.classList.add('css-mask'); }
-  })();
 
   function resolveTemplate(str){ return String(str).replace('{name}', CONFIG.name); }
   function t(key){ return resolveTemplate(translations[currentLang][key] || ''); }
