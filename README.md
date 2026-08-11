@@ -2,7 +2,7 @@
 
 Invitación digital autocontenida (un solo archivo HTML) para los XV años:
 
-**Sitio en vivo:** https://darioatencio21.github.io/15invitaci-ndigitalV2/
+**Sitio en vivo:** https://darioatencio21.github.io/emilyalvaradobirthday15/
 
 ## Qué incluye
 - Pantalla de apertura con sobre interactivo + sonido/música.
@@ -24,12 +24,12 @@ GitHub Pages sirve el archivo `index.html` desde la rama `main`. Con cada cambio
    git commit -m "descripción del cambio"
    git push origin main
    ```
-4. Espera ~1–2 min y refresca https://darioatencio21.github.io/15invitaci-ndigitalV2/
+4. Espera ~1–2 min y refresca https://darioatencio21.github.io/emilyalvaradobirthday15/
 
 ### Invitaciones personalizadas
 Envía a cada invitado un link con su nombre:
 ```
-https://darioatencio21.github.io/15invitaci-ndigitalV2/?nombre=María
+https://darioatencio21.github.io/emilyalvaradobirthday15/?nombre=María
 ```
 
 ## Cosas pendientes de contenido
