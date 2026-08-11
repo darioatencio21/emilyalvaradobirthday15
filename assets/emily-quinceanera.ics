@@ -1,0 +1,11 @@
+﻿BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Emily's Quinceanera//EN
+BEGIN:VEVENT
+DTSTART:20261114T220000Z
+DTEND:20261115T060000Z
+SUMMARY:Emily's Quinceañera
+LOCATION:Terra Bella Memorial Building\, 23941 Ave 95\, Terra Bella\, CA 93270
+DESCRIPTION:Celebracion de los XV anos de Emily. Misa a las 2:00 PM\, recepcion\, vals y fiesta.
+END:VEVENT
+END:VCALENDAR
