@@ -164,8 +164,9 @@
 
   /* Countdown */
   #countdown{background:linear-gradient(180deg,var(--forest),var(--forest-deep));color:var(--ink);}
-  .count-grid{display:flex;gap:clamp(10px,4vw,28px);justify-content:center;flex-wrap:wrap;margin-top:2rem;}
-  .count-cell{min-width:78px;}
+  .count-grid{display:flex;flex-wrap:nowrap;gap:clamp(6px,2.4vw,22px);justify-content:space-between;
+    align-items:stretch;margin-top:2rem;width:100%;max-width:520px;}
+  .count-cell{min-width:0;flex:1 1 0;box-sizing:border-box;}
   .count-num{font-family:'Playfair Display',serif;font-size:clamp(2.1rem,7vw,3.2rem);color:#D96A8B;font-variant-numeric:tabular-nums;}
   .count-label{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:#D96A8B;margin-top:.3rem;}
   .count-done{font-size:1.4rem;color:#D96A8B;}
@@ -365,7 +366,7 @@
   .reveal.in-view .detail-row:nth-child(5){transition-delay:.32s;}
 
   /* Countdown jewel settings */
-  .count-cell{min-width:86px;padding:18px 12px 14px;border-radius:12px;position:relative;
+  .count-cell{min-width:0;flex:1 1 0;padding:clamp(10px,3vw,18px) clamp(4px,2vw,12px) clamp(8px,2.5vw,14px);border-radius:12px;position:relative;
     border:1px solid transparent;
     background:
       linear-gradient(165deg, rgba(255,255,255,.95), rgba(255,255,255,.85)) padding-box,
@@ -624,6 +625,12 @@
   /* Gallery mobile responsive */
   @media(max-width:500px){
     .gallery-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media(max-width:420px){
+    .count-grid{gap:5px;}
+    .count-cell{padding:8px 3px 8px;}
+    .count-num{font-size:clamp(1.5rem,7vw,2.2rem);}
+    .count-label{font-size:.62rem;letter-spacing:.12em;}
   }
 </style>
 
