@@ -108,20 +108,28 @@
   .reveal.in-view{opacity:1;transform:none;}
   .parallax-layer{position:absolute;pointer-events:none;opacity:.12;will-change:transform;z-index:1;}
 
-  /* Butterflies */
-  .butterfly{position:absolute;width:34px;height:26px;color:var(--gold-soft);opacity:.85;animation:flutter 7s ease-in-out infinite;z-index:2;pointer-events:none;}
+  /* Butterflies — silueta realista con aleteo rápido + deriva lenta (animaciones anidadas) */
+  .butterfly{position:absolute;width:34px;height:26px;color:var(--gold-soft);opacity:.88;animation:flutter 7s ease-in-out infinite;z-index:2;pointer-events:none;}
+  .butterfly svg{display:block;width:100%;height:100%;overflow:visible;transform-origin:50% 50%;
+    animation:wingFlap 1s ease-in-out infinite;filter:drop-shadow(0 3px 5px rgba(0,0,0,.22));}
   @keyframes flutter{
-    0%{transform:translate(0,0) rotate(0deg) scale(1);}
-    25%{transform:translate(16px,-12px) rotate(8deg) scale(.94,1);}
-    50%{transform:translate(4px,-24px) rotate(-5deg) scale(1);}
-    75%{transform:translate(-14px,-9px) rotate(6deg) scale(.94,1);}
-    100%{transform:translate(0,0) rotate(0deg) scale(1);}
+    0%{transform:translate(0,0) rotate(0deg);}
+    25%{transform:translate(15px,-11px) rotate(8deg);}
+    50%{transform:translate(3px,-24px) rotate(-5deg);}
+    75%{transform:translate(-12px,-8px) rotate(6deg);}
+    100%{transform:translate(0,0) rotate(0deg);}
+  }
+  @keyframes wingFlap{
+    0%,100%{transform:scaleX(1);}
+    50%{transform:scaleX(.55);}
   }
 
   /* Ambient butterflies drifting across the whole page background */
   .bg-butterflies{position:fixed;inset:0;z-index:4;pointer-events:none;overflow:hidden;}
   .bg-butterfly{position:absolute;left:-60px;color:var(--gold-soft);opacity:.45;
     animation:bgButterfly linear infinite;}
+  .bg-butterfly svg{display:block;width:100%;height:100%;overflow:visible;transform-origin:50% 50%;
+    animation:wingFlap 1.15s ease-in-out infinite;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2));}
   @keyframes bgButterfly{
     0%  {transform:translate(0,0) rotate(-4deg);}
     20% {transform:translate(26vw,-4vh) rotate(9deg);}
@@ -137,19 +145,33 @@
   .bg-butterfly.b5{top:24%;width:17px;height:13px;opacity:.28;animation-duration:42s;animation-delay:-6s;}
   .bg-butterfly.b6{top:74%;width:24px;height:18px;animation-duration:33s;animation-delay:-16s;}
 
-  /* Hero portrait with decorative frame (flota sobre el fondo: sin panel ni recuadro) */
-  .hero-frame-wrap{position:relative;width:clamp(360px,98vw,480px);aspect-ratio:1536/1024;
-    margin:clamp(90px,13vw,120px) auto 18px;overflow:hidden;border-radius:14px;transform:translateX(-16px);}
-  .hero-photo{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;}
-  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;}
-  .hero-photo .placeholder-icon{width:30%;height:30%;opacity:.4;stroke:var(--gold-soft);}
-  .frame-deco{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;pointer-events:none;
-    animation:frameGlow 4s ease-in-out infinite;
-    filter:drop-shadow(0 0 14px rgba(201,169,97,.45)) drop-shadow(0 6px 18px rgba(0,0,0,.35));}
-  @keyframes frameGlow{
-    0%,100%{filter:drop-shadow(0 0 9px rgba(201,169,97,.32)) drop-shadow(0 6px 18px rgba(0,0,0,.35));}
-    50%{filter:drop-shadow(0 0 26px rgba(201,169,97,.68)) drop-shadow(0 6px 18px rgba(0,0,0,.35));}
+  /* Hero portrait: marco de foto de Emily + iluminación natural.
+     Halo circular (nunca cuadrado) siempre activo; shimmer tipo títulos solo con .css-mask
+     (se activa por JS cuando mask-image funciona y NO corre desde file://). */
+  .hero-frame-wrap{position:relative;width:clamp(360px,98vw,480px);aspect-ratio:1024/1536;
+    margin:clamp(90px,13vw,120px) auto 18px;transform:translateX(-16px);}
+  .hero-halo{position:absolute;inset:-14% -20%;z-index:0;pointer-events:none;filter:blur(26px);
+    background:radial-gradient(circle at 50% 34%,rgba(248,217,140,.5),rgba(201,169,97,.18) 46%,transparent 72%);
+    animation:heroHalo 5s ease-in-out infinite;}
+  @keyframes heroHalo{
+    0%,100%{opacity:.5;transform:scale(1);}
+    50%{opacity:.85;transform:scale(1.05);}
   }
+  .hero-shine{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0;mix-blend-mode:screen;
+    background-image:
+      linear-gradient(110deg,transparent 28%,rgba(255,255,255,.85) 50%,transparent 72%),
+      linear-gradient(180deg,#fffdf5,var(--gold-soft) 60%,var(--gold));
+    background-size:260% 100%,100% 100%;background-position:-120% 0,0 0;
+    animation:goldShimmer 7s linear infinite;}
+  .css-mask .hero-shine{
+    opacity:1;
+    -webkit-mask-image:url('assets/marco-foto-emily.webp');mask-image:url('assets/marco-foto-emily.webp');
+    -webkit-mask-size:contain;mask-size:contain;
+    -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+    -webkit-mask-position:center;mask-position:center;
+  }
+  .hero-portrait{position:relative;z-index:2;display:block;width:100%;height:100%;object-fit:contain;
+    filter:drop-shadow(0 0 30px rgba(201,169,97,.45)) drop-shadow(0 14px 30px rgba(0,0,0,.38));}
   #welcome .name{font-size:clamp(2rem,7vw,3.4rem);color:var(--ivory);margin-top:.2rem;
     text-shadow:0 0 24px rgba(201,169,97,.25);}
   #welcome .subtitle{color:var(--gold-soft);margin-top:.3rem;}
@@ -277,10 +299,39 @@
   .confirmation .check svg{width:26px;height:26px;stroke:var(--gold-soft);}
 
   /* Footer */
-  footer{background:var(--forest-deep);color:var(--sage);text-align:center;padding:46px 20px 34px;}
+  footer{position:relative;overflow:hidden;background:var(--forest-deep);color:var(--sage);text-align:center;padding:46px 20px 34px;}
   footer .sign{color:var(--gold-soft);font-size:1.8rem;margin-bottom:8px;}
+  footer > :not(.footer-sky){position:relative;z-index:1;}
   .host-link{display:inline-block;margin-top:26px;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
     color:rgba(183,203,178,.55);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:inherit;}
+
+  /* Estrellas forma de estrella + estrellas fugaces en el cielo del footer */
+  .footer-sky{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+  .footer-star{position:absolute;width:9px;height:9px;color:var(--cream);opacity:0;
+    animation:starTwinkle ease-in-out infinite;filter:drop-shadow(0 0 5px rgba(255,255,255,.55));}
+  .footer-star svg{display:block;width:100%;height:100%;}
+  .footer-star.s1{top:14%;left:12%;animation-duration:3.2s;animation-delay:.4s;}
+  .footer-star.s2{top:22%;right:18%;width:6px;height:6px;animation-duration:2.6s;animation-delay:1.2s;}
+  .footer-star.s3{top:58%;left:22%;width:5px;height:5px;animation-duration:3.6s;animation-delay:.8s;}
+  .footer-star.s4{top:66%;right:14%;width:8px;height:8px;animation-duration:2.9s;animation-delay:2s;}
+  .footer-star.s5{top:8%;left:44%;width:7px;height:7px;animation-duration:3s;animation-delay:1.7s;}
+  .footer-star.s6{top:48%;left:8%;width:10px;height:10px;animation-duration:3.4s;animation-delay:2.6s;}
+  .footer-star.s7{top:34%;right:34%;width:6px;height:6px;animation-duration:2.7s;animation-delay:.3s;}
+  .footer-shooting{position:absolute;width:130px;height:2px;border-radius:2px;opacity:0;
+    background:linear-gradient(90deg,rgba(255,255,255,0),var(--cream));
+    transform:rotate(-32deg);transform-origin:left center;}
+  .footer-shooting::before{content:"";position:absolute;left:0;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;
+    background:var(--cream);box-shadow:0 0 10px 3px rgba(255,255,255,.55);}
+  .footer-shooting.sh1{top:6%;right:10%;animation:shootingFall 6.5s linear 2s infinite;}
+  .footer-shooting.sh2{top:26%;right:30%;width:100px;animation:shootingFall 8s linear 5.5s infinite;}
+  .footer-shooting.sh3{top:50%;right:20%;width:150px;animation:shootingFall 7.5s linear 9s infinite;}
+  @keyframes shootingFall{
+    0%{opacity:0;transform:translate(0,0) rotate(-32deg);}
+    8%{opacity:1;}
+    20%{opacity:1;}
+    36%{opacity:0;transform:translate(-72vw,48vh) rotate(-32deg);}
+    100%{opacity:0;transform:translate(-72vw,48vh) rotate(-32deg);}
+  }
 
   /* Music toggle */
   .music-toggle{position:fixed;bottom:22px;right:22px;z-index:60;width:52px;height:52px;border-radius:50%;background:var(--gold);
@@ -536,8 +587,7 @@
 
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.001s !important;}
-    .butterfly,.bg-butterflies,.welcome-particles,.global-particles,.quince-bokeh{display:none;}
-    .frame-deco{animation:none;filter:drop-shadow(0 0 14px rgba(201,169,97,.55)) drop-shadow(0 6px 18px rgba(0,0,0,.35));}
+    .butterfly,.bg-butterflies,.welcome-particles,.global-particles,.quince-bokeh,.footer-sky{display:none;}
   }
 
   /* Google Maps embed with golden frame */
@@ -582,14 +632,57 @@
     </g>
   </symbol>
   <symbol id="gem-top" viewBox="0 0 24 30"><path d="M12 1 L22 11 L12 29 L2 11 Z" fill="currentColor"/></symbol>
-  <symbol id="butterfly" viewBox="0 0 40 30">
-    <g fill="currentColor">
-      <path d="M18 15 C10 2 0 4 2 14 C3 20 12 20 18 15Z"/>
-      <path d="M22 15 C30 2 40 4 38 14 C37 20 28 20 22 15Z"/>
-      <path d="M18 15 C10 22 2 24 3 18 C4 24 12 26 19 21Z" opacity=".85"/>
-      <path d="M22 15 C30 22 38 24 37 18 C36 24 28 26 21 21Z" opacity=".85"/>
+  <symbol id="butterfly" viewBox="0 0 48 36">
+    <defs>
+      <linearGradient id="wUp" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#f8e3ae"/>
+        <stop offset=".55" stop-color="#e8b64c"/>
+        <stop offset="1" stop-color="#a97e2b"/>
+      </linearGradient>
+      <linearGradient id="wLow" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#dfae4d"/>
+        <stop offset="1" stop-color="#8a6622"/>
+      </linearGradient>
+      <radialGradient id="wSpot" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#fff6df"/>
+        <stop offset=".6" stop-color="#f3d489"/>
+        <stop offset="1" stop-color="#c0872f"/>
+      </radialGradient>
+    </defs>
+    <g fill="none" stroke="currentColor" stroke-width="1" opacity=".9">
+      <path d="M24 5 C22 2.5 18 1.5 16.5 2.5"/>
+      <path d="M24 5 C26 2.5 30 1.5 31.5 2.5"/>
+      <circle cx="16.5" cy="2.6" r="1.2" fill="currentColor" stroke="none"/>
+      <circle cx="31.5" cy="2.6" r="1.2" fill="currentColor" stroke="none"/>
     </g>
-    <rect x="19" y="8" width="2" height="16" rx="1" fill="currentColor"/>
+    <path d="M24 9 C20 1 9 0 4.5 5.5 C1 10 6.5 17 24 12 Z" fill="url(#wUp)"/>
+    <path d="M24 9 C28 1 39 0 43.5 5.5 C47 10 41.5 17 24 12 Z" fill="url(#wUp)"/>
+    <path d="M24 12 C16 16 12.5 26 15 32 C17.5 36.5 24 33 24 23 Z" fill="url(#wLow)"/>
+    <path d="M24 12 C32 16 35.5 26 33 32 C30.5 36.5 24 33 24 23 Z" fill="url(#wLow)"/>
+    <circle cx="11" cy="8" r="3.1" fill="url(#wSpot)"/>
+    <circle cx="37" cy="8" r="3.1" fill="url(#wSpot)"/>
+    <ellipse cx="15.5" cy="12" rx="2.1" ry="2.8" fill="url(#wSpot)" opacity=".85"/>
+    <ellipse cx="32.5" cy="12" rx="2.1" ry="2.8" fill="url(#wSpot)" opacity=".85"/>
+    <g stroke="rgba(255,255,255,.4)" stroke-width=".8" fill="none">
+      <path d="M24 9 C19 7 12 6.5 7 7.5"/>
+      <path d="M24 9 C21 5 13 3.5 6 6"/>
+      <path d="M24 12 C18 14 14.5 21 16 29"/>
+      <path d="M24 9 C29 7 36 6.5 41 7.5"/>
+      <path d="M24 9 C27 5 35 3.5 42 6"/>
+      <path d="M24 12 C30 14 33.5 21 32 29"/>
+    </g>
+    <g fill="currentColor">
+      <ellipse cx="24" cy="17.5" rx="2.4" ry="11.5"/>
+      <ellipse cx="23.2" cy="16.5" rx="1" ry="6.5" fill="rgba(255,255,255,.28)"/>
+      <circle cx="24" cy="5.6" r="2.7"/>
+    </g>
+    <g stroke="rgba(255,255,255,.22)" stroke-width="1.3" fill="none">
+      <path d="M4.5 5.5 C7 2.5 11 1 16.5 .8"/>
+      <path d="M43.5 5.5 C41 2.5 37 1 31.5 .8"/>
+    </g>
+  </symbol>
+  <symbol id="star-shape" viewBox="0 0 24 24">
+    <path d="M12 2 L14.7 8.6 L21.7 8.9 L16.2 13.3 L18 20 L12 16.2 L6 20 L7.8 13.3 L2.3 8.9 L9.3 8.6 Z" fill="currentColor"/>
   </symbol>
   <symbol id="ico-calendar" viewBox="0 0 24 24"><g fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></g></symbol>
   <symbol id="ico-clock" viewBox="0 0 24 24"><g fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></g></symbol>
@@ -621,17 +714,17 @@
 
 <!-- Ambient butterflies floating across the page background -->
 <div class="bg-butterflies" aria-hidden="true">
-  <svg class="bg-butterfly b1" viewBox="0 0 40 30"><use href="#butterfly"/></svg>
-  <svg class="bg-butterfly b2" viewBox="0 0 40 30"><use href="#butterfly"/></svg>
-  <svg class="bg-butterfly b3" viewBox="0 0 40 30"><use href="#butterfly"/></svg>
-  <svg class="bg-butterfly b4" viewBox="0 0 40 30"><use href="#butterfly"/></svg>
-  <svg class="bg-butterfly b5" viewBox="0 0 40 30"><use href="#butterfly"/></svg>
-  <svg class="bg-butterfly b6" viewBox="0 0 40 30"><use href="#butterfly"/></svg>
+  <div class="bg-butterfly b1"><svg viewBox="0 0 48 36"><use href="#butterfly"/></svg></div>
+  <div class="bg-butterfly b2"><svg viewBox="0 0 48 36"><use href="#butterfly"/></svg></div>
+  <div class="bg-butterfly b3"><svg viewBox="0 0 48 36"><use href="#butterfly"/></svg></div>
+  <div class="bg-butterfly b4"><svg viewBox="0 0 48 36"><use href="#butterfly"/></svg></div>
+  <div class="bg-butterfly b5"><svg viewBox="0 0 48 36"><use href="#butterfly"/></svg></div>
+  <div class="bg-butterfly b6"><svg viewBox="0 0 48 36"><use href="#butterfly"/></svg></div>
 </div>
 
 <!-- ============ VIDEO / LANDING ============ -->
 <div id="video-screen">
-  <video id="intro-video" src="intro-invitacion.mp4" autoplay muted playsinline preload="auto"></video>
+  <video id="intro-video" src="assets/video-intro-2.mp4" autoplay muted playsinline preload="auto"></video>
   
   <button class="sound-btn" id="sound-btn" aria-label="Activar sonido">
     <span class="sound-icon sound-icon--off">🔇</span>
@@ -654,17 +747,16 @@
   <section id="welcome" class="dark">
     <svg class="parallax-layer" data-speed="0.15" style="top:-40px;left:-60px;width:280px;color:var(--gold)" viewBox="0 0 100 40"><use href="#leaf-branch" stroke="var(--gold)"/></svg>
     <svg class="parallax-layer" data-speed="0.25" style="bottom:-20px;right:-70px;width:260px;color:var(--gold);transform:rotate(180deg)" viewBox="0 0 100 40"><use href="#leaf-branch" stroke="var(--gold)"/></svg>
-    <svg class="butterfly" id="butterfly-1" style="top:12%;left:12%" viewBox="0 0 40 30"><use href="#butterfly"/></svg>
-    <svg class="butterfly" id="butterfly-2" style="top:60%;right:10%;animation-delay:1.4s" viewBox="0 0 40 30"><use href="#butterfly"/></svg>
+    <div class="butterfly" id="butterfly-1" style="top:12%;left:12%"><svg viewBox="0 0 48 36"><use href="#butterfly"/></svg></div>
+    <div class="butterfly" id="butterfly-2" style="top:60%;right:10%;animation-delay:1.4s"><svg viewBox="0 0 48 36"><use href="#butterfly"/></svg></div>
 
     <div class="section-inner reveal">
       <div class="welcome-particles" aria-hidden="true"></div>
       <div class="welcome-content">
       <div class="hero-frame-wrap" id="hero-frame-wrap">
-        <div class="hero-photo" id="hero-frame">
-          <svg class="placeholder-icon"><use href="#flower-mark"/></svg>
-        </div>
-        <img class="frame-deco" src="assets/frame-deco.png" alt="" aria-hidden="true" draggable="false">
+        <span class="hero-halo" aria-hidden="true"></span>
+        <span class="hero-shine" aria-hidden="true"></span>
+        <img class="hero-portrait" id="hero-frame" src="assets/marco-foto-emily.webp" alt="Emily Alvarado" draggable="false">
       </div>
 
       <div class="eyebrow subtitle" data-i18n="turning_fifteen">Turning Fifteen</div>
@@ -790,7 +882,7 @@
 
   <!-- Gallery -->
   <section id="gallery" class="dark section--textured">
-    <svg class="butterfly" id="butterfly-3" style="top:8%;right:14%" viewBox="0 0 40 30"><use href="#butterfly"/></svg>
+    <div class="butterfly" id="butterfly-3" style="top:8%;right:14%"><svg viewBox="0 0 48 36"><use href="#butterfly"/></svg></div>
     <div class="section-inner reveal">
       <div class="eyebrow" data-i18n="gallery_eyebrow">A Few Favorite Moments</div>
       <h2 class="heading-shimmer" style="margin-top:.4rem" data-i18n="gallery_heading">Gallery</h2>
@@ -846,6 +938,18 @@
   </section>
 
   <footer>
+    <div class="footer-sky" aria-hidden="true">
+      <span class="footer-star s1"><svg viewBox="0 0 24 24"><use href="#star-shape"/></svg></span>
+      <span class="footer-star s2"><svg viewBox="0 0 24 24"><use href="#star-shape"/></svg></span>
+      <span class="footer-star s3"><svg viewBox="0 0 24 24"><use href="#star-shape"/></svg></span>
+      <span class="footer-star s4"><svg viewBox="0 0 24 24"><use href="#star-shape"/></svg></span>
+      <span class="footer-star s5"><svg viewBox="0 0 24 24"><use href="#star-shape"/></svg></span>
+      <span class="footer-star s6"><svg viewBox="0 0 24 24"><use href="#star-shape"/></svg></span>
+      <span class="footer-star s7"><svg viewBox="0 0 24 24"><use href="#star-shape"/></svg></span>
+      <span class="footer-shooting sh1"></span>
+      <span class="footer-shooting sh2"></span>
+      <span class="footer-shooting sh3"></span>
+    </div>
     <div class="foot-monogram"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#monogram-ring"/></svg><span>I</span></div>
     <div class="sign script" id="footer-sign" data-i18n="footer_sign">With Love, Emily &amp; Family</div>
     <p data-i18n="footer_note">Can't wait to celebrate with you</p>
@@ -1048,6 +1152,15 @@ es: {
   let currentLang = 'en';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* Activar shimmer enmascarado del hero solo cuando mask-image funciona y no se abre
+     desde file:// (ahí Chrome bloquea la imagen vía CSS por CORS: se evita el error y
+     se usa la luz ambiental base). */
+  (function enableCssMask(){
+    var ok = (typeof CSS !== 'undefined') && CSS.supports &&
+      (CSS.supports('mask-image', 'url(x.png)') || CSS.supports('-webkit-mask-image', 'url(x.png)'));
+    if(ok && window.location.protocol !== 'file:'){ document.documentElement.classList.add('css-mask'); }
+  })();
+
   function resolveTemplate(str){ return String(str).replace('{name}', CONFIG.name); }
   function t(key){ return resolveTemplate(translations[currentLang][key] || ''); }
 
@@ -1096,7 +1209,11 @@ es: {
   }
 
   if(CONFIG.heroPhoto){
-    document.getElementById('hero-frame').innerHTML = '<img src="' + CONFIG.heroPhoto + '" alt="' + CONFIG.name + '">';
+    var heroFrame = document.getElementById('hero-frame');
+    if(heroFrame){
+      heroFrame.outerHTML = '<img class="hero-portrait" id="hero-frame" src="' + CONFIG.heroPhoto +
+        '" alt="' + CONFIG.name + '" draggable="false">';
+    }
   }
 
   /* Gallery render */
