@@ -253,22 +253,22 @@
   form.rsvp-form{max-width:420px;margin:2.2rem auto 0;text-align:left;display:flex;flex-direction:column;gap:18px;}
   .field label{display:block;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-text);margin-bottom:6px;}
   .field input[type=text],.field textarea{width:100%;padding:12px 14px;border-radius:8px;border:1px solid rgba(230,211,161,.5);
-    background:rgba(250,218,224,.55);color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:1.05rem;transition:border-color .2s,box-shadow .2s;}
+    background:rgba(194,223,194,.6);color:var(--ink);font-family:'Cormorant Garamond',serif;font-size:1.05rem;transition:border-color .2s,box-shadow .2s;}
   .field input:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,169,97,.28), 0 0 14px rgba(201,169,97,.2);}
   .field input::placeholder,.field textarea::placeholder{color:rgba(28,49,28,.45);}
   .field textarea{resize:vertical;min-height:72px;}
   .attend-toggle{display:flex;gap:10px;}
   .attend-toggle button{flex:1;padding:12px;border-radius:8px;border:1px solid rgba(28,49,28,.25);background:transparent;
     color:var(--ink);cursor:pointer;font-size:.95rem;letter-spacing:.04em;transition:background .2s,border-color .2s;}
-  .attend-toggle button.active{background:var(--gold);color:var(--ink);border-color:var(--gold);font-weight:600;}
+  .attend-toggle button.active{background:#F7C8D5;color:#000;border-color:#F7C8D5;font-weight:600;}
   .guest-stepper{display:flex;align-items:center;gap:16px;}
-  .guest-stepper button{width:38px;height:38px;border-radius:50%;border:1px solid var(--gold);background:transparent;
-    color:var(--gold-text);font-size:1.2rem;cursor:pointer;line-height:1;}
+  .guest-stepper button{width:38px;height:38px;border-radius:50%;border:1px solid #F7C8D5;background:#F7C8D5;
+    color:#000;font-size:1.2rem;cursor:pointer;line-height:1;}
   .guest-stepper .count{font-family:'Playfair Display',serif;font-size:1.4rem;min-width:24px;text-align:center;}
-  .submit-btn{margin-top:10px;padding:20px 32px;border-radius:30px;border:none;background:var(--gold);color:var(--ink);
+  .submit-btn{margin-top:10px;padding:20px 32px;border-radius:30px;border:none;background:#F7C8D5;color:#000;
     font-size:1.35rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;cursor:pointer;
-    box-shadow:0 6px 24px rgba(201,169,97,.45);transition:background .25s,transform .2s;}
-  .submit-btn:hover{background:var(--gold-soft);transform:translateY(-2px);}
+    box-shadow:0 6px 24px rgba(247,200,213,.55);transition:background .25s,transform .2s;}
+  .submit-btn:hover{background:#efb3c6;transform:translateY(-2px);}
   .submit-btn:active{transform:scale(.97);}
   .submit-btn:disabled{opacity:.6;cursor:default;}
   .form-msg{font-size:.9rem;min-height:1.2em;}
@@ -413,7 +413,7 @@
   .frame:hover img{transform:scale(1.08);}
 
   /* RSVP form card */
-  form.rsvp-form{position:relative;background:rgba(247,200,213,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+  form.rsvp-form{position:relative;background:rgba(194,223,194,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
     border:1px solid rgba(201,169,97,.45);border-radius:16px;padding:clamp(22px,6vw,36px);
     box-shadow:0 18px 44px rgba(28,49,28,.12), inset 0 1px 0 rgba(255,255,255,.6);}
   form.rsvp-form::before{content:"";position:absolute;inset:7px;border:1px solid rgba(201,169,97,.2);border-radius:11px;pointer-events:none;}
@@ -746,7 +746,7 @@
 
 <!-- ============ VIDEO / LANDING ============ -->
 <div id="video-screen">
-  <video id="intro-video" src="assets/video-intro-2.mp4" autoplay muted playsinline preload="auto"></video>
+  <video id="intro-video" src="assets/video-intro-3.mp4" autoplay muted playsinline preload="auto"></video>
   
   <button class="sound-btn" id="sound-btn" aria-label="Activar sonido">
     <img class="sound-icon sound-icon--off" src="assets/icono-musica-verde.webp" alt="" draggable="false">
@@ -776,7 +776,7 @@
       <div class="welcome-particles" aria-hidden="true"></div>
       <div class="welcome-content">
       <div class="hero-frame-wrap" id="hero-frame-wrap">
-        <img class="hero-portrait" id="hero-frame" src="assets/marco-nuevo-verde-claro.webp" alt="Emily Alvarado" draggable="false">
+        <img class="hero-portrait" id="hero-frame" src="assets/marco-con-imagen-2.webp" alt="Emily Alvarado" draggable="false">
       </div>
 
       <div class="eyebrow subtitle" data-i18n="turning_fifteen">Turning Fifteen</div>
@@ -914,18 +914,8 @@
     </div>
   </section>
 
-  <!-- Gallery -->
-  <section id="gallery" class="dark section--textured">
-    <div class="butterfly" id="butterfly-3" style="top:8%;right:14%"><svg viewBox="0 0 48 36"><use href="#butterfly"/></svg></div>
-    <div class="section-inner reveal">
-      <div class="eyebrow" data-i18n="gallery_eyebrow">A Few Favorite Moments</div>
-      <h2 class="heading-shimmer" style="margin-top:.4rem" data-i18n="gallery_heading">Gallery</h2>
-      <div class="gallery-grid" id="gallery-grid"></div>
-    </div>
-  </section>
-
   <!-- RSVP -->
-  <section id="rsvp" class="dark">
+  <section id="rsvp" class="dark section--textured">
     <div class="section-inner reveal">
       <div class="eyebrow" data-i18n="rsvp_eyebrow">Will You Join Us?</div>
       <h2 style="margin-top:.4rem">RSVP</h2>
@@ -1239,19 +1229,6 @@ es: {
         '" alt="' + CONFIG.name + '" draggable="false">';
     }
   }
-
-  /* Gallery render */
-  (function renderGallery(){
-    const grid = document.getElementById('gallery-grid');
-    CONFIG.galleryPhotos.forEach(function(url, i){
-      const frame = document.createElement('div');
-      frame.className = 'frame ' + (i % 2 === 0 ? 'shape-circle' : 'shape-round');
-      frame.innerHTML = url
-        ? '<img src="' + url + '" alt="' + CONFIG.name + ' photo ' + (i+1) + '">'
-        : '<svg><use href="#flower-mark"/></svg>';
-      grid.appendChild(frame);
-    });
-  })();
 
   /* Ambient particles: fireflies + stars (welcome card) and bokeh (Date, Time & Place).
      Solo transform/opacity; posiciones y duraciones aleatorias. Omitidas si reduce-motion. */
