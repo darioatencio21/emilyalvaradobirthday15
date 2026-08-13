@@ -746,7 +746,7 @@
 
 <!-- ============ VIDEO / LANDING ============ -->
 <div id="video-screen">
-  <video id="intro-video" src="assets/video-intro-3.mp4" autoplay muted playsinline preload="auto"></video>
+  <video id="intro-video" src="assets/video-intro-3.mp4" autoplay muted playsinline preload="metadata"></video>
   
   <button class="sound-btn" id="sound-btn" aria-label="Activar sonido">
     <img class="sound-icon sound-icon--off" src="assets/icono-musica-verde.webp" alt="" draggable="false">
@@ -776,7 +776,7 @@
       <div class="welcome-particles" aria-hidden="true"></div>
       <div class="welcome-content">
       <div class="hero-frame-wrap" id="hero-frame-wrap">
-        <img class="hero-portrait" id="hero-frame" src="assets/marco-con-imagen-2.webp" alt="Emily Alvarado" draggable="false">
+        <img class="hero-portrait" id="hero-frame" src="assets/marco-con-imagen-2.webp" alt="Emily Alvarado" draggable="false" loading="lazy">
       </div>
 
       <div class="eyebrow subtitle" data-i18n="turning_fifteen">Turning Fifteen</div>
@@ -868,18 +868,18 @@
         <!-- Photo Block: reutilizable; imagen PNG transparente (sin marco) -->
         <div class="photo-block reveal">
           <div class="photo-block__media">
-            <img src="assets/timeline-iglesia.webp" alt="Iglesia">
+            <img src="assets/timeline-iglesia.webp" alt="Iglesia" loading="lazy">
           </div>
           <div class="photo-block__body">
             <p class="photo-block__time">2:00 PM</p>
-            <p class="photo-block__title" data-i18n="tl_title_1">Thanksgiving Mass</p>
+            <p class="photo-block__title" data-i18n="tl_title_1">Mass</p>
             <p class="photo-block__subtitle">Blessed Miguel Agustín Pro Mission</p>
             <a class="photo-block__link" href="https://www.google.com/maps/search/?api=1&amp;query=Blessed%20Miguel%20Agust%C3%ADn%20Pro%20Mission%2023941%20Ave%2095%2C%20Terra%20Bella%2C%20CA%2093270" target="_blank" rel="noopener" data-i18n="view_location">View Location</a>
           </div>
         </div>
         <div class="photo-block reveal">
           <div class="photo-block__media">
-            <img src="assets/timeline-recepcion.webp" alt="Recepción">
+            <img src="assets/timeline-recepcion.webp" alt="Recepción" loading="lazy">
           </div>
           <div class="photo-block__body">
             <p class="photo-block__time">5:00 PM</p>
@@ -890,7 +890,7 @@
         </div>
         <div class="photo-block reveal">
           <div class="photo-block__media">
-            <img src="assets/timeline-vals.webp" alt="Dance">
+            <img src="assets/timeline-vals.webp" alt="Dance" loading="lazy">
           </div>
           <div class="photo-block__body">
             <p class="photo-block__time">7:00 PM</p>
@@ -901,7 +901,7 @@
         </div>
         <div class="photo-block reveal">
           <div class="photo-block__media">
-            <img src="assets/timeline-celebracion.webp" alt="Celebración">
+            <img src="assets/timeline-celebracion.webp" alt="Celebración" loading="lazy">
           </div>
           <div class="photo-block__body">
             <p class="photo-block__time">8:00 PM</p>
@@ -980,7 +980,7 @@
   </footer>
 </div>
 
-<audio id="bg-music" loop preload="auto"><source id="music-source" src="assets/bg-music.mp3" type="audio/mpeg"></audio>
+<audio id="bg-music" loop preload="metadata"><source id="music-source" src="assets/bg-music.mp3" type="audio/mpeg"></audio>
 <button class="music-toggle" id="music-toggle" aria-label="Play music"><img src="assets/icono-musica-verde.webp" alt="" draggable="false"></button>
 
 <div id="host-modal">
@@ -1052,7 +1052,7 @@ hostPassword: "isa15",
       get_directions: "Get Directions",
       timeline_eyebrow: "The Program",
       timeline_heading: "Event Timeline",
-      tl_title_1: "Thanksgiving Mass",
+      tl_title_1: "Mass",
       tl_title_2: "Reception",
       tl_title_3: "Waltz",
       tl_title_4: "Celebration",
