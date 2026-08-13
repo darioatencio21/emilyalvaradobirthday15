@@ -1030,6 +1030,7 @@ hostPassword: "isa15",
     // form at https://web3forms.com). Leave "" to disable the functional RSVP.
     // Free plan: 250 submissions/month.
     web3formsAccessKey: "e192f9b7-0a6c-44d1-8b20-a467d4109ff4",
+    rsvpDeadline: "2026-10-01T23:59:59",
     musicUrl: "assets/bg-music.mp3",
     heroPhoto: "",
     galleryPhotos: ["","","",""]
@@ -1066,6 +1067,7 @@ hostPassword: "isa15",
       dress_note: "Emerald, gold and soft neutral tones are welcome. Kindly avoid wearing white — that shade is reserved for the birthday girl.",
       rsvp_eyebrow: "Will You Join Us?",
       rsvp_deadline: "Kindly respond by October 1, 2026",
+      rsvp_closed: "The deadline to confirm has ended",
       label_name: "Your Name",
       placeholder_name: "Full name",
       label_attend: "Will you attend?",
@@ -1133,6 +1135,7 @@ es: {
       dress_note: "Los tonos esmeralda, dorado y neutros suaves son bienvenidos. Por favor evita el blanco — ese color está reservado para la quinceañera.",
       rsvp_eyebrow: "¿Nos Acompañas?",
       rsvp_deadline: "Por favor confirma antes del 1 de octubre de 2026",
+      rsvp_closed: "El plazo para confirmar ha finalizado",
       label_name: "Tu Nombre",
       placeholder_name: "Nombre completo",
       label_attend: "¿Asistirás?",
@@ -1506,8 +1509,20 @@ es: {
     }catch(e){}
   })();
 
+  (function checkRsvpDeadline(){
+    const deadline = new Date(CONFIG.rsvpDeadline).getTime();
+    if(Date.now() > deadline && !rsvpDone){
+      form.style.display = 'none';
+      const msg = document.createElement('p');
+      msg.className = 'rsvp-deadline';
+      msg.style.marginTop = '1.5rem';
+      msg.textContent = t('rsvp_closed');
+      form.parentNode.insertBefore(msg, form.nextSibling);
+    }
+  })();
 
-// This page works three ways:
+
+ // This page works three ways:
   // 1) Viewed as a Claude artifact: RSVPs save automatically via window.storage,
   //    and the "Host View" panel below shows live responses in-page.
   // 2) Hosted elsewhere (e.g. Netlify/GitHub Pages) WITH Web3Forms configured:
@@ -1518,6 +1533,11 @@ es: {
   form.addEventListener('submit', async function(e){
     e.preventDefault();
     if(rsvpSubmitting || rsvpDone){ return; }
+    if(Date.now() > new Date(CONFIG.rsvpDeadline).getTime()){
+      formMsg.textContent = t('rsvp_closed');
+      formMsg.classList.add('error');
+      return;
+    }
 
     const name = sanitizeText(document.getElementById('guest-name').value, 20);
     const message = sanitizeText(document.getElementById('guest-message').value, 150);
